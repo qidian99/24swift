@@ -22,7 +22,7 @@ class CanvasView: UIView {
         // do not need to give it a specific, automatically
         // set by init builder
         
-        print("in layout subview")
+//        print("in layout subview")
 
         
         self.clipsToBounds = true
@@ -38,8 +38,8 @@ class CanvasView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         startingPoint = touch?.location(in: self)
-        print("touched")
-        debugPrint(touch)
+//        print("touched")
+//        debugPrint(touch)
         
     }
     
@@ -80,4 +80,14 @@ class CanvasView: UIView {
     }
     */
 
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: image!.cgImage!)
+    }
 }
